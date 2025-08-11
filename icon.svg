@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#3084d9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Location pin base -->
+  <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+  
+  <!-- Center dot -->
+  <circle cx="12" cy="9" r="2.5"/>
+  
+  <!-- Edit pencil -->
+  <path d="M15 3l6 6-9 9H6v-6l9-9z"/>
+  <path d="M15 3l6 6"/>
+</svg>

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maps Quality Fix</title>
+    <style>
+        /* CSS Variables for your color palette */
+        :root {
+            --primary: #3084d9;
+            --primary-hover: #2773c4;
+            --primary-active: #1f62af;
+            --background: #fbfafb;
+            --card: #ffffff;
+            --card-border: #e2e8f0;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #64748b;
+            --success: #059669;
+            --warning: #d97706;
+            --error: #dc2626;
+            --success-bg: #ecfdf5;
+            --warning-bg: #fffbeb;
+            --error-bg: #fef2f2;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 360px;
+            min-height: 240px;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--background);
+            color: var(--text-primary);
+            line-height: 1.5;
+        }
+
+        /* Header Section */
+        .header {
+            background: var(--card);
+            border-bottom: 1px solid var(--card-border);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 4px;
+            text-align: center;
+        }
+
+        .header p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 20px;
+        }
+
+        /* Status Card */
+        .status-card {
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 16px;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+        }
+
+        .status-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .status-item:last-child {
+            border-bottom: none;
+        }
+
+        .status-label {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .status-value {
+            font-size: 14px;
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 8px;
+            font-size: 13px;
+        }
+
+        .status-good {
+            background: var(--success-bg);
+            color: var(--success);
+        }
+
+        .status-warning {
+            background: var(--warning-bg);
+            color: var(--warning);
+        }
+
+        .status-bad {
+            background: var(--error-bg);
+            color: var(--error);
+        }
+
+        /* Button */
+        .button {
+            width: 100%;
+            padding: 12px 16px;
+            background: var(--primary);
+            border: 1px solid var(--primary);
+            border-radius: 12px;
+            color: white;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-bottom: 16px;
+        }
+
+        .button:hover:not(:disabled) {
+            background: var(--primary-hover);
+            border-color: var(--primary-hover);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(48, 132, 217, 0.3);
+        }
+
+        .button:active:not(:disabled) {
+            background: var(--primary-active);
+            transform: translateY(0);
+        }
+
+        .button:disabled {
+            background: #e2e8f0;
+            border-color: #cbd5e1;
+            color: var(--text-muted);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Loading State */
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 16px;
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            margin-bottom: 16px;
+        }
+
+        .spinner {
+            border: 2px solid #e2e8f0;
+            border-top: 2px solid var(--primary);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 8px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Info Section */
+        .info-section {
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 12px;
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.5;
+            text-align: center;
+        }
+
+        /* Badge */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 2px 8px;
+            background: var(--primary);
+            color: white;
+            border-radius: 16px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        /* Status Icons */
+        .status-icon {
+            width: 16px;
+            height: 16px;
+            margin-right: 6px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Maps Enhancer</h1>
+        <p>Enhanced satellite imagery quality</p>
+    </div>
+
+    <div class="main-content">
+        <div class="status-card">
+            <div class="status-item">
+                <span class="status-label">Current Page</span>
+                <span class="status-value" id="pageStatus">Checking...</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">Image Quality</span>
+                <span class="status-value" id="qualityStatus">Checking...</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">Auto-Fix</span>
+                <span class="badge">Enabled</span>
+            </div>
+        </div>
+
+        <button class="button" id="fixButton" disabled>
+            Fix Current URL
+        </button>
+
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <div>Processing...</div>
+        </div>
+
+        <div class="info-section">
+            This extension automatically optimizes Google Maps URLs for enhanced satellite imagery quality.
+        </div>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>
