@@ -1,6 +1,6 @@
 # Privacy Policy for Maps Enhancer
 
-**Last Updated**: December 2024  
+**Last Updated**: August 2025  
 **Extension Version**: 1.0.0
 
 ## 🔒 Your Privacy Matters
@@ -160,3 +160,4 @@ No tracking, no data collection, no privacy concerns.
 
 **Privacy-First Extension**  
 *Your data stays on your device, always.*
+
